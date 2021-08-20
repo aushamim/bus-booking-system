@@ -75,11 +75,10 @@ int view()
 void newBooking()
 {
     FILE *booking = fopen("booking-record.txt", "a+");
-    char name[50], phone[20], from[20], to[20];
+    char name[100], phone[50], from[50], to[50];
     name[0] = ' ';
     printf("Name: ");
     scanf(" %[^\n]s", name);
-    printf("\tName in: %s\n", name);
     printf("Phone: ");
     scanf(" %[^\n]s", phone);
     printf("Your Current Location: ");
@@ -122,9 +121,10 @@ void main()
         newBooking();
         break;
     case 3:
+        printf("\nEnter information to search.\n");
         line = view();
         delete (line);
-        printf("\nInsert New Informations.\n");
+        printf("\n\nInsert New Informations.\n");
         newBooking();
         printf("\nTicket successfully updated.");
         break;
