@@ -17,8 +17,14 @@ int selection()
     return a;
 }
 
-void seats();
-void update();
+void seats()
+{
+    int seats[100] = {0};
+    for (int i = 0; i < 50; i++)
+    {
+        printf("%d ", seats[i]);
+    }
+}
 
 void details(int line)
 {
@@ -117,6 +123,9 @@ void main()
 
     switch (sel)
     {
+    case 1:
+        seats();
+        break;
     case 2:
         newBooking();
         break;
