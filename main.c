@@ -3,7 +3,7 @@
 int selection()
 {
     int a;
-    printf("\n\n\t\tBaler Transports\n");
+    printf("\n\n\t\tAwsome Transports\n");
     printf("\t--------------------------------\n");
     printf("\t1. Show Available Seats\n");
     printf("\t2. Book a Seat\n");
@@ -17,12 +17,16 @@ int selection()
     return a;
 }
 
-void seats()
+void seats(int seatsData[])
 {
-    int seats[100] = {0};
-    for (int i = 0; i < 50; i++)
+    for (int i = 0; i < 36; i++)
     {
-        printf("%d ", seats[i]);
+
+        if (i % 4 == 0)
+        {
+            printf("\n");
+        }
+        printf("\t%d", seatsData[i]);
     }
 }
 
@@ -78,11 +82,11 @@ int view()
     return line;
 }
 
-void newBooking()
+int newBooking()
 {
     FILE *booking = fopen("booking-record.txt", "a+");
     char name[100], phone[50], from[50], to[50];
-    name[0] = ' ';
+    int targetSeat;
     printf("Name: ");
     scanf(" %[^\n]s", name);
     printf("Phone: ");
@@ -91,9 +95,12 @@ void newBooking()
     scanf(" %[^\n]s", from);
     printf("Destination: ");
     scanf(" %[^\n]s", to);
+    printf("Seat Number: ");
+    scanf(" %d", &targetSeat);
     fprintf(booking, "\n");
-    fprintf(booking, "%s+%s+%s+%s#", name, phone, from, to);
+    fprintf(booking, "%s+%s+%s+%s+S%d#", name, phone, from, to, targetSeat);
     fclose(booking);
+    return targetSeat;
 }
 
 void delete (int line)
@@ -118,16 +125,25 @@ void delete (int line)
 
 void main()
 {
-    int line;
-    int sel = selection();
+    int z = 500;
 
+    int line, seatsData[40] = {0}, targetSeat;
+    int sel = selection();
+    for (int i = 0; i <= 40; i++)
+    {
+        seatsData[i] = i + 1;
+    }
+
+again:
     switch (sel)
     {
     case 1:
-        seats();
+        seats(seatsData);
+        main();
         break;
     case 2:
-        newBooking();
+        targetSeat = newBooking();
+        seatsData[targetSeat - 1] = 0;
         break;
     case 3:
         printf("\nEnter information to search.\n");
@@ -149,4 +165,5 @@ void main()
         printf("\tERROR: Not a valid option");
         break;
     }
+    goto again;
 }
