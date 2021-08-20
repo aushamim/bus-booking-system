@@ -127,19 +127,21 @@ void main()
 {
     int z = 500;
 
-    int line, seatsData[40] = {0}, targetSeat;
-    int sel = selection();
+    int line, seatsData[40] = {0}, targetSeat, sel;
     for (int i = 0; i <= 40; i++)
     {
         seatsData[i] = i + 1;
     }
 
 again:
+    sel = selection();
     switch (sel)
     {
+    case 0:
+        exit(0);
+        break;
     case 1:
         seats(seatsData);
-        main();
         break;
     case 2:
         targetSeat = newBooking();
