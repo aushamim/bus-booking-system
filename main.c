@@ -3,7 +3,7 @@
 int selection()
 {
     int a;
-    printf("\n\n\t\tAwsome Transports\n");
+    printf("\n\n\t\tUTHSOB\n");
     printf("\t--------------------------------\n");
     printf("\t1. Show Available Seats\n");
     printf("\t2. Book a Seat\n");
